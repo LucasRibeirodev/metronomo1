@@ -1,8 +1,7 @@
 import tkinter
 from tkinter import *
 import time
-
-contagens = [1, 2, 3, 4]
+from playsound import playsound
 
 janela = tkinter.Tk()
 janela.title ('Metrônomo')
@@ -10,20 +9,20 @@ janela.geometry ('640x360+408+200')
 janela.configure (bg ='white')
 
 def play_metronomo():
-    batidas_por_segundos = 60/int(velocidade_metronomo.get())
-    while True:
-        for contagem in contagens:
-            print(contagem)
-            contagem = contagem + 1
-            time.sleep(batidas_por_segundos)
+    batidas_por_minutos = 60/int(velocidade_metronomo.get())
+    contagem = 1
+    while contagem <= 4:
+        print(contagem)
+        contagem += 1
+        playsound('C:/Users/gesta/Desktop/Projetos/metronomo1/2.wav')
+        time.sleep(batidas_por_minutos - 0.255)
 
 #botão iniciar
-button = Button(janela, text='Iniciar', width=6, command=play_metronomo)
-button.place(x=100, y=100)
+iniciarButton = Button(janela, text='Iniciar', width=6, command=play_metronomo)
+iniciarButton.place(x=100, y=100)
 
 #botão sair
-button = Button(janela, text='Sair', width=6, command=janela.quit())
-button.place(x=300, y=100)
+sairButton = Button(janela, text='Sair', width=6, command=janela.destroy).pack(pady=100, padx=300)
 
 #labels
 Label(janela, text='Tempo', font=('Calibri', 11)).place(x=50, y=200)
